@@ -10,7 +10,7 @@ It should be as easy as create a website within a running wagtail instance.
 I came up with different approaches and finally, after talking to a lot of others I decided to go the postgres schema path.
 You can find a good documentation here and here.
 
-Feel free to contribute to keep this alive. I am not the best at that :D 
+Feel free to contribute to keep this alive. I am not the best at that 🤞 
 
 Check out the :doc:`usage` section for further information, including
 how to :ref:`installation` the project.

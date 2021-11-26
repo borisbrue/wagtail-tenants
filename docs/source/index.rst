@@ -1,10 +1,16 @@
-Welcome to Lumache's documentation!
+Welcome to wagtail-tenants documentation!
 ===================================
 
-**Lumache** (/lu'make/) is a Python library for cooks and food lovers
-that creates recipes mixing random ingredients.
-It pulls data from the `Open Food Facts database <https://world.openfoodfacts.org/>`_
-and offers a *simple* and *intuitive* API.
+**wagtail-tenants** is an app for wagtail cms to provide multi-tenancy. 
+My goal was to get a root wagtail instrance and use the beautiful wagtail admin
+to host multiple wagtail instances without touching the server directly. 
+
+It should be as easy as create a website within a running wagtail instance. 
+
+I came up with different approaches and finally, after talking to a lot of others I decided to go the postgres schema path.
+You can find a good documentation here and here.
+
+Feel free to contribute to keep this alive. I am not the best at that :D 
 
 Check out the :doc:`usage` section for further information, including
 how to :ref:`installation` the project.

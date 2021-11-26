@@ -4,4 +4,4 @@ API
 .. autosummary::
    :toctree: generated
 
-   wagtail-tenants
+   wagtail_tenants

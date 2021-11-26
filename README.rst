@@ -1,9 +1,6 @@
-Template for the Read the Docs tutorial
+Welcome to the world of tenants in wagtail
 =======================================
 
-This GitHub template includes fictional Python library
-with some basic Sphinx docs.
-
-Read the tutorial here:
+I will write the documentation in the next days. I hope I will get it that far now :) 
 
 https://docs.readthedocs.io/en/stable/tutorial/

@@ -1,16 +1,23 @@
-wagtail_tenants
+# wagtail_tenants
 ===============
 
-wagtail_tenants is a Django/Wagtail app to provide multitenancy to a wagtail project.
+wagtail_tenants is a Django/Wagtail app to provide multitenancy to your wagtail project.
 You are able to run a main Wagtail Site and from within you are able to host as many Wagtailsites as you want. 
-django_tenants is used to slice the database layer in a postgres database based on a given schema
+django_tenants is used to slice the database layer in a postgres database based on a given schema.
 
-Detailed documentation is in the "docs" directory.
+Detailed documentation will be in the "docs" directory. 
 
-Quick start
------------
+## Quick start
 
-1. Add "wagtail_tenants" to your INSTALLED_APPS setting like this::
+### Installation
+
+```bash
+pip install wagtail-tenants
+```
+
+### Configuration
+
+1. Add "wagtail_tenants" to your INSTALLED_APPS setting like this:
 
     SHARED_APPS = (
         'wagtail_tenants.customers'

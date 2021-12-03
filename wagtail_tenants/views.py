@@ -1,19 +1,17 @@
+from django.conf.urls import url
 from django.db import transaction
 from django.shortcuts import redirect
-from django.urls import reverse
-from django.conf.urls import url
-from django.utils.translation import gettext as _
 from django.template.response import TemplateResponse
+from django.urls import reverse
+from django.utils.translation import gettext as _
 from django_tenants.utils import tenant_context
-
 from wagtail.admin import messages
 from wagtail.admin.views import account
-
 from wagtail.core.log_actions import log
-from wagtail_tenants.backends import UserModel
 
-from wagtail_tenants.utils import check_tenant_for_user
+from wagtail_tenants.backends import UserModel
 from wagtail_tenants.forms import TenantAdminUserForm
+from wagtail_tenants.utils import check_tenant_for_user
 
 
 class TenantLoginView(account.LoginView):

@@ -1,7 +1,8 @@
-from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db import models
 
 from wagtail_tenants.customers.models import Client
+
 
 # Create your models here.
 class User(AbstractUser):

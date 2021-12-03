@@ -1,10 +1,12 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext as _
 from wagtail.contrib.modeladmin.options import ModelAdmin, ModelAdminGroup
-from django.contrib.auth.admin import UserAdmin
-from .models import User
 
 from wagtail_tenants.customers.models import Client, Domain
+
+from .models import User
+
 
 # Register your models here.
 class CustomUserAdmin(UserAdmin):

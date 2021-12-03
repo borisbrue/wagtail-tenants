@@ -1,32 +1,31 @@
-from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.models import Group
-from django.db import transaction
-from django.db.models import Q
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
+from django.db import transaction
+from django.db.models import Q
+from django.shortcuts import get_object_or_404, redirect
+from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.utils.translation import gettext as _
 from django.views.decorators.vary import vary_on_headers
-from django.template.response import TemplateResponse
-
 from wagtail.admin import messages
 from wagtail.admin.auth import any_permission_required, permission_required
 from wagtail.admin.forms.search import SearchForm
-from wagtail.core.log_actions import log
 from wagtail.core import hooks
+from wagtail.core.log_actions import log
 from wagtail.users.utils import user_can_delete_user
 from wagtail.users.views.users import (
     add_user_perm,
     change_user_perm,
     delete_user_perm,
-    get_users_filter_query,
-    get_user_edit_form,
     get_user_creation_form,
+    get_user_edit_form,
+    get_users_filter_query,
 )
 
-from wagtail_tenants.utils import check_tenant_for_user, is_root_tenant
 from wagtail_tenants.models import User
+from wagtail_tenants.utils import check_tenant_for_user, is_root_tenant
 
 
 # Create your views here.

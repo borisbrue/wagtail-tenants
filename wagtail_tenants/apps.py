@@ -1,5 +1,4 @@
 from django.apps import AppConfig
-
 from wagtail.users.apps import WagtailUsersAppConfig
 
 

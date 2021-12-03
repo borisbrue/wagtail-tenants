@@ -1,5 +1,5 @@
-from wagtail.core.models import UserPagePermissionsProxy
 from wagtail.admin.ui.components import Component
+from wagtail.core.models import UserPagePermissionsProxy
 
 
 class TenantPanel(Component):

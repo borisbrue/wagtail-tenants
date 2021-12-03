@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
+
 from wagtail_tenants.customers.models import Client
 
 UserModel = get_user_model()

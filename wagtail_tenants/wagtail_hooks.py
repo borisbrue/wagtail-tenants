@@ -2,11 +2,11 @@ from django.conf.urls import url
 from wagtail.contrib.modeladmin.options import modeladmin_register
 from wagtail.core import hooks
 
+import wagtail_tenants.users.views.users as TenantUserViews  # import index, edit, create
+
 from .admin import TenantAdminGroup
 from .panels import TenantPanel
 from .views import TenantUserAdmin
-import wagtail_tenants.users.views.users as TenantUserViews  # import index, edit, create
-
 
 modeladmin_register(TenantAdminGroup)
 

@@ -18,7 +18,7 @@ pip install wagtail-tenants
 ### Configuration
 
 1. Add "wagtail_tenants" to your INSTALLED_APPS setting like this:
-
+```python
     SHARED_APPS = (
         'wagtail_tenants.customers'
         'wagtail_tenants',
@@ -43,28 +43,31 @@ pip install wagtail-tenants
     INSTALLED_APPS = list(SHARED_APPS) + [
         app for app in TENANT_APPS if app not in SHARED_APPS
     ]
-
+```
 2. Include the the tenants middleware at the beginning of your middlewares:
+```python
     MIDDLEWARE = [
     "wagtail_tenants.middleware.main.WagtailTenantMainMiddleware",
     ...
     ]
-
+```
 3. Define the Tenant model Constants (and also set the default auto field if not already done):
+```python
     AUTH_USER_MODEL = 'wagtail_tenants.User' 
     TENANT_MODEL = "customers.Client" 
     TENANT_DOMAIN_MODEL = "customers.Domain"
     DEFAULT_AUTO_FIELD='django.db.models.AutoField'
-
+```
 4. Set the Database Router to work with the tenants:
-
+```python
     DATABASE_ROUTERS = ("wagtail_tenants.routers.WagtailTenantSyncRouter",)
-
+```
 5. Set the authentication backend to fit to our Tenant model.
+```python
     AUTHENTICATION_BACKENDS = [
         'wagtail_tenants.backends.TenantBackend',
     ]
-
+```
 6. Run the migrations with `./manage.py migrate_schemas --shared`
 7. Create a public schema with `./manage.py create_tenant`
 8. Create a superuser for the public tenant `./manage.py create_tenant_superuser`

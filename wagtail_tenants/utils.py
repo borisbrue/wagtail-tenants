@@ -12,5 +12,5 @@ def check_tenant_for_user(user, tenant):
         return user.tenant == tenant
 
 
-def is_root_tenant(tenant):
+def is_client_tenant(tenant):
     return tenant.schema_name != "public"

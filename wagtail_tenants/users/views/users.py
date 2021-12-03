@@ -25,7 +25,7 @@ from wagtail.users.views.users import (
 )
 
 from wagtail_tenants.models import User
-from wagtail_tenants.utils import check_tenant_for_user, is_root_tenant
+from wagtail_tenants.utils import check_tenant_for_user, is_client_tenant
 
 
 # Create your views here.
@@ -42,7 +42,7 @@ def index(request, *args):
         group = get_object_or_404(Group, id=args[0])
         group_filter = Q(groups=group) if args else Q()
 
-    if request.tenant and is_root_tenant(request.tenant):
+    if request.tenant and is_client_tenant(request.tenant):
         tenant_filter = Q(tenant=tenant)
 
     model_fields = [f.name for f in User._meta.get_fields()]

@@ -12,9 +12,6 @@ You can find a good documentation here and here.
 
 Feel free to contribute to keep this alive. I am not the best at that 🤞 
 
-Check out the :doc:`usage` section for further information, including
-how to :ref:`installation` the project.
-
 .. note::
 
    This project is under active development.

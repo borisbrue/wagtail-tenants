@@ -1,8 +1,16 @@
-[build-system]
-requires = ["flit_core >=3.2,<4"]
-build-backend = "flit_core.buildapi"
+[tool.poetry]
+name = "wagtail-tenants"
+version = "0.1.0"
+description = "Adds multitenancy to wagtail cms"
+authors = ["Boris Brue <boris@zuckersalzundpfeffer.de>"]
 
-[project]
-name = "wagtail_tenants"
-authors = [{name = "Boris Brünen", email = "boris@zuckersalzundpfeffer.de"}]
-dynamic = ["version", "description"]
+[tool.poetry.dependencies]
+python = "^3.6.2"
+black = "^21.11b1"
+django-tenants = "^3.3.4"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

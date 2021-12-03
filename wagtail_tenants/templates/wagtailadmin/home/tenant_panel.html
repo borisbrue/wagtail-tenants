@@ -1,0 +1,21 @@
+{% load i18n wagtailadmin_tags %}
+
+<section class="panel summary nice-padding">
+    <h2 class="title-wrapper">Tenant Information</h2>
+    <ul class="stats">
+        <li>
+            <div>
+                Name: {{tenant.name}}
+            </div>
+            <div>
+                Trial: {{tenant.on_trial}}
+            </div>
+            <div>
+                Guthaben bis: {{tenant.paid_until}}
+            </div>
+        </li>
+        {% comment %} {% for item in summary_items %}
+        {% component item %}
+        {% endfor %} {% endcomment %}
+    </ul>
+</section>

@@ -1,5 +1,4 @@
 # wagtail_tenants
-===============
 
 wagtail_tenants is a Django/Wagtail app to provide multitenancy to your wagtail project.
 You are able to run a main Wagtail Site and from within you are able to host as many Wagtailsites as you want. 

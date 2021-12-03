@@ -17,11 +17,19 @@ Quick start
         'wagtail_tenants',
         'wagtail.contrib.forms',
         ...
+        "wagtail_tenants.users",
+        "wagtail.users",
+        ...
     )
 
     TENANT_APPS = (
         'wagtail_tenants',
         "django.contrib.contenttypes",
+        ...
+        # rest of the wagtail apps
+        ...
+        "wagtail_tenants.users",
+        "wagtail.users",
         ...
     )
 
@@ -35,10 +43,11 @@ Quick start
     ...
     ]
 
-3. Define the Tenant model Constants:
-    AUTH_USER_MODEL = 'wagtail_tenants.User' # app.Model
-    TENANT_MODEL = "customers.Client"  # app.Model
-    TENANT_DOMAIN_MODEL = "customers.Domain"  # app.Model
+3. Define the Tenant model Constants (and also set the default auto field if not already done):
+    AUTH_USER_MODEL = 'wagtail_tenants.User' 
+    TENANT_MODEL = "customers.Client" 
+    TENANT_DOMAIN_MODEL = "customers.Domain"
+    DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
 4. Set the Database Router to work with the tenants:
 
@@ -51,6 +60,6 @@ Quick start
 
 6. Run the migrations with `./manage.py migrate_schemas --shared`
 7. Create a public schema with `./manage.py create_tenant`
-8. Create a superuser for the public tenant `./manage.py createsuperuser`
-9. Start the Server and have fun 
+8. Create a superuser for the public tenant `./manage.py create_tenant_superuser`
+9. Start the Server and have fun
 10. You are able to create tenants within the admin of your public wagtailsite. If you want to log into a tenant you need at least one superuser for the tenant. You can use `./manage.py create_tenant_superuser` for that.

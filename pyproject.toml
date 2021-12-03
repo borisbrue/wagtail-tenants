@@ -8,6 +8,7 @@ authors = ["Boris Brue <boris@zuckersalzundpfeffer.de>"]
 python = "^3.6.2"
 django-tenants = "^3.3.4"
 sphinx = {version = "^3", optional = true}
+wagtail = "^2.15.1"
 
 [tool.poetry.dev-dependencies]
 black = "^21.11b1"

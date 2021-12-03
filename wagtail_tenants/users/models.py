@@ -1,6 +1,6 @@
-
 from django.db import models
 from django.contrib.auth.models import Group
+
 
 class TenantGroupManager(models.Manager):
     use_in_migrations = True

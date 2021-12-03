@@ -15,6 +15,7 @@ from wagtail_tenants.backends import UserModel
 from wagtail_tenants.utils import check_tenant_for_user
 from wagtail_tenants.forms import TenantAdminUserForm
 
+
 class TenantLoginView(account.LoginView):
     def get(self, *args, **kwargs):
 
@@ -27,28 +28,39 @@ class TenantLoginView(account.LoginView):
 
         return super().get(*args, **kwargs)
 
-class TenantUserAdmin():
+
+class TenantUserAdmin:
     def create(request, *args):
         if request.method == "POST":
             form = TenantAdminUserForm(request.POST)
             if form.is_valid():
-                superuser = form.cleaned_data['superuser']
-                tenant = form.cleaned_data['tenant']
+                superuser = form.cleaned_data["superuser"]
+                tenant = form.cleaned_data["tenant"]
                 with tenant_context(tenant):
                     created = False
                     try:
-                        tenant_admin = UserModel.objects.get(username=superuser.username)
+                        tenant_admin = UserModel.objects.get(
+                            username=superuser.username
+                        )
                     except UserModel.DoesNotExist:
-                        tenant_admin = UserModel(username=superuser.username, email=superuser.email, password=superuser.password, is_staff=True, is_superuser=True)
+                        tenant_admin = UserModel(
+                            username=superuser.username,
+                            email=superuser.email,
+                            password=superuser.password,
+                            is_staff=True,
+                            is_superuser=True,
+                        )
                         tenant_admin.save()
                         created = True
 
                     if created:
-                        print('New SuperAdmin added to Tenant')
+                        print("New SuperAdmin added to Tenant")
                         # log(tenant_admin, "wagtail-tenants__admin.link")
                         messages.success(
                             request,
-                            _("Admin to Tenant link '{0}' created.").format(tenant_admin),
+                            _("Admin to Tenant link '{0}' created.").format(
+                                tenant_admin
+                            ),
                             buttons=[
                                 # messages.button(
                                 #     reverse("wagtailusers_users:edit", args=(user.pk,)), _("Edit")
@@ -58,13 +70,13 @@ class TenantUserAdmin():
                         ...
                         return redirect("wagtail-tenants__admin_link")
                     messages.warning(
-                            request,
-                            _("Admin to Tenant link '{0}' exist.").format(tenant_admin),
-                            buttons=[
-                                messages.button(
-                                    tenant.domains.get(is_primary=True).domain, _("Login")
-                                )
-                            ],
+                        request,
+                        _("Admin to Tenant link '{0}' exist.").format(tenant_admin),
+                        buttons=[
+                            messages.button(
+                                tenant.domains.get(is_primary=True).domain, _("Login")
+                            )
+                        ],
                     )
                     return redirect("wagtail-tenants__admin_link")
                 #     tenant_user = form.save()
@@ -81,7 +93,7 @@ class TenantUserAdmin():
                 #     ],
                 # )
         else:
-            form = TenantAdminUserForm() 
+            form = TenantAdminUserForm()
             return TemplateResponse(
                 request,
                 "wagtail_tenants/admin/link.html",

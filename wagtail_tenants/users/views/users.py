@@ -1,4 +1,3 @@
-
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.models import Group
@@ -29,7 +28,7 @@ from wagtail.users.views.users import (
 from wagtail_tenants.utils import check_tenant_for_user, is_root_tenant
 from wagtail_tenants.models import User
 
-    
+
 # Create your views here.
 @any_permission_required(add_user_perm, change_user_perm, delete_user_perm)
 @vary_on_headers("X-Requested-With")
@@ -43,10 +42,9 @@ def index(request, *args):
     if args:
         group = get_object_or_404(Group, id=args[0])
         group_filter = Q(groups=group) if args else Q()
-    
+
     if request.tenant and is_root_tenant(request.tenant):
         tenant_filter = Q(tenant=tenant)
-       
 
     model_fields = [f.name for f in User._meta.get_fields()]
 
@@ -109,7 +107,7 @@ def index(request, *args):
 @permission_required(add_user_perm)
 def create(request):
     can_set_superuser = request.user.is_staff
-    
+
     for fn in hooks.get_hooks("before_create_user"):
         result = fn(request)
         if hasattr(result, "status_code"):
@@ -144,10 +142,7 @@ def create(request):
     return TemplateResponse(
         request,
         "wagtailusers/users/create.html",
-        {
-            "form": form,
-            "can_set_superuser": can_set_superuser
-        },
+        {"form": form, "can_set_superuser": can_set_superuser},
     )
 
 
@@ -159,8 +154,8 @@ def edit(request, user_id):
     can_set_superuser = request.user.is_staff
     editing_self = request.user == user
 
-    if not check_tenant_for_user(user,tenant):
-        return redirect('wagtailusers_users:index')
+    if not check_tenant_for_user(user, tenant):
+        return redirect("wagtailusers_users:index")
 
     for fn in hooks.get_hooks("before_edit_user"):
         result = fn(request, user)
@@ -205,7 +200,7 @@ def edit(request, user_id):
             "user": user,
             "form": form,
             "can_delete": can_delete,
-            "can_set_superuser": can_set_superuser
+            "can_set_superuser": can_set_superuser,
         },
     )
 

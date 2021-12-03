@@ -1,3 +1,2 @@
-
 def create_tenant_superuser():
     ...

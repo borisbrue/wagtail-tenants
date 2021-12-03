@@ -9,22 +9,21 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('auth', '0012_alter_user_first_name_max_length'),
+        ("auth", "0012_alter_user_first_name_max_length"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='TenantGroup',
-            fields=[
-            ],
+            name="TenantGroup",
+            fields=[],
             options={
-                'proxy': True,
-                'indexes': [],
-                'constraints': [],
+                "proxy": True,
+                "indexes": [],
+                "constraints": [],
             },
-            bases=('auth.group',),
+            bases=("auth.group",),
             managers=[
-                ('objects', wagtail_tenants.users.models.TenantGroupManager()),
+                ("objects", wagtail_tenants.users.models.TenantGroupManager()),
             ],
         ),
     ]

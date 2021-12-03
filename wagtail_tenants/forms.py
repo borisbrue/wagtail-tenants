@@ -4,10 +4,11 @@ from wagtail_tenants.customers.models import Client
 
 UserModel = get_user_model()
 
+
 class TenantAdminUserForm(forms.Form):
 
     superusers = UserModel.objects.filter(is_staff=True)
-    tenants = Client.objects.exclude(schema_name='public')
+    tenants = Client.objects.exclude(schema_name="public")
 
-    superuser = forms.ModelChoiceField(superusers, label='Admin')
-    tenant = forms.ModelChoiceField(tenants,label="Tenant")
+    superuser = forms.ModelChoiceField(superusers, label="Admin")
+    tenant = forms.ModelChoiceField(tenants, label="Tenant")

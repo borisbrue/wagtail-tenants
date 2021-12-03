@@ -5,4 +5,3 @@ from .models import TenantGroup
 class GroupViewSet(WagtailGroupViewSet):
     model = TenantGroup
     ...
-

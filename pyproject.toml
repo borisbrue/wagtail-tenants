@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "wagtail-tenants"
+name = "wagtail_tenants"
 version = "0.1.0"
 description = "Adds multitenancy to wagtail cms"
 authors = ["Boris Brue <boris@zuckersalzundpfeffer.de>"]

@@ -14,8 +14,8 @@ clean: ## Remove Python file artifacts.
 install: ## Install dependencies.
 	poetry install
 
-docs: ## create the docs.
-	cd ./docs && make
+doc: ## create the docs.
+	cd docs; make html
 
 flake8: ## Run flake8 on the project.
 	flake8 --select BLK wagtail_tenants/

@@ -1,6 +1,5 @@
-=====
 wagtail_tenants
-=====
+===============
 
 wagtail_tenants is a Django/Wagtail app to provide multitenancy to a wagtail project.
 You are able to run a main Wagtail Site and from within you are able to host as many Wagtailsites as you want. 
@@ -14,7 +13,6 @@ Quick start
 1. Add "wagtail_tenants" to your INSTALLED_APPS setting like this::
 
     SHARED_APPS = (
-        'django_tenants',
         'wagtail_tenants.customers'
         'wagtail_tenants',
         'wagtail.contrib.forms',
@@ -33,7 +31,7 @@ Quick start
 
 2. Include the the tenants middleware at the beginning of your middlewares:
     MIDDLEWARE = [
-    "django_tenants.middleware.main.TenantMainMiddleware",
+    "wagtail_tenants.middleware.main.WagtailTenantMainMiddleware",
     ...
     ]
 
@@ -44,7 +42,7 @@ Quick start
 
 4. Set the Database Router to work with the tenants:
 
-    DATABASE_ROUTERS = ("django_tenants.routers.TenantSyncRouter",)
+    DATABASE_ROUTERS = ("wagtail_tenants.routers.WagtailTenantSyncRouter",)
 
 5. Set the authentication backend to fit to our Tenant model.
     AUTHENTICATION_BACKENDS = [

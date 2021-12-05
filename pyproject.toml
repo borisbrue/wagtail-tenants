@@ -7,15 +7,14 @@ authors = ["Boris Brue <boris@zuckersalzundpfeffer.de>"]
 [tool.poetry.dependencies]
 python = "^3.6.2"
 django-tenants = "^3.3.4"
-
+myst-parser = "^0.15.2"
+sphinx-rtd-theme = "^1.0.0"
 
 [tool.poetry.dev-dependencies]
 black = "^21.11b1"
 flake8 = "^4.0.1"
 sphinx = {version = "^3", optional = true}
 wagtail = "^2.15.1"
-myst-parser = "^0.15.2"
-sphinx-rtd-theme = "^1.0.0"
 isort = "^5.10.1"
 flake8-black = "^0.2.3"
 

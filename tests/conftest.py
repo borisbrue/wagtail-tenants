@@ -53,9 +53,6 @@ def pytest_configure():
             'modelcluster',
             'taggit',
 
-            'bakery',
-            'wagtailbakery',
-
             'tests',
         ],
         MIDDLEWARE=[
@@ -90,10 +87,5 @@ def pytest_configure():
                 },
             },
         ],
-        WAGTAIL_SITE_NAME='Wagtail Bakery',
-        BUILD_DIR=os.path.join(BASE_DIR, 'build'),
-        BAKERY_VIEWS=(
-            'wagtailbakery.views.AllPagesView',
-        ),
-        CELERY_ALWAYS_EAGER=True,
+        WAGTAIL_SITE_NAME='Wagtail Tenants',
     )

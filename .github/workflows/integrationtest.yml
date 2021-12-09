@@ -11,7 +11,7 @@ jobs:
         python-version: [3.9.2]
     # Docker Hub image that `container-job` executes in
     # container: python:buster
-    container: python:3.9.2-slim-buster
+    container: python:3.8.2-slim-buster
 
     # Service containers to run with `container-job`
     services:
@@ -33,10 +33,10 @@ jobs:
       # Downloads a copy of the code in your repository before running CI tests
       - name: Check out repository code
         uses: actions/checkout@v2
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
+      # - name: Set up Python ${{ matrix.python-version }}
+      #   uses: actions/setup-python@v2
+      #   with:
+      #     python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
         run: |

@@ -1,6 +1,7 @@
 # wagtail-tenants
 
 [![Documentation Status](https://readthedocs.org/projects/wagtail-tenants/badge/?version=latest)](https://wagtail-tenants.readthedocs.io/en/latest/?badge=latest)
+[![Testing the wagtail tenants with postgres](https://github.com/borisbrue/wagtail-tenants/actions/workflows/integrationtest.yml/badge.svg)](https://github.com/borisbrue/wagtail-tenants/actions/workflows/integrationtest.yml)
 
 wagtail_tenants is a Django/Wagtail app to provide multitenancy to your wagtail project.
 You are able to run a main Wagtail Site and from within you are able to host as many Wagtailsites as you want. 

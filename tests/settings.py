@@ -118,10 +118,10 @@ TEMPLATES = [
 DATABASES = {
     "default": {
         "ENGINE": "django_tenants.postgresql_backend",
-        "NAME": "wagtail_tenants_pytest",
-        "USER": "borisbrue",
-        "PASSWORD": "",
-        "HOST": "127.0.0.1",
+        "NAME": "postgres",
+        "USER": "root",
+        "PASSWORD": "postgres",
+        "HOST": "postgres",
         "PORT": "5432",
         # ..
     }

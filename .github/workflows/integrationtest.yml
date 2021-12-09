@@ -39,15 +39,6 @@ jobs:
       #     python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
-        env:
-          # The hostname used to communicate with the PostgreSQL service container
-          POSTGRES_HOST: postgres
-          # The default PostgreSQL port
-          POSTGRES_PORT: 5432
-          DB_NAME: postgres
-          DB_USER: postgres
-          DB_PASSWORD: postgres
-          DB_HOST: postgres
         run: |
           apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
           build-essential \
@@ -59,7 +50,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install poetry tox tox-gh-actions
           poetry install
+      - name: Run TestCases
+        env:
+          DB_NAME: postgres
+          DB_USER: postgres
+          DB_PASSWORD: postgres
+          DB_HOST: postgres
+        run: |
           poetry run pytest
-      # - name: Test with tox and postgres
-
-      #   run: tox

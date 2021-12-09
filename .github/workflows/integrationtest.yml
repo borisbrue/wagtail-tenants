@@ -10,7 +10,7 @@ jobs:
       matrix:
         python-version: [3.9]
     # Docker Hub image that `container-job` executes in
-    container: python:slim-buster
+    container: python:buster
 
     # Service containers to run with `container-job`
     services:

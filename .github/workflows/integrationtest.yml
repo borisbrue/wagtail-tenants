@@ -11,6 +11,7 @@ jobs:
         python-version: [3.9]
     # Docker Hub image that `container-job` executes in
     # container: python:buster
+    container: node:latest
 
     # Service containers to run with `container-job`
     services:

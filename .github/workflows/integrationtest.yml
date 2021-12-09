@@ -47,4 +47,8 @@ jobs:
           POSTGRES_HOST: postgres
           # The default PostgreSQL port
           POSTGRES_PORT: 5432
+          DB_NAME: postgres
+          DB_USER: root
+          DB_PASSWORD: postgres
+          DB_HOST: postgres
         run: tox

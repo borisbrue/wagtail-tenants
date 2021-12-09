@@ -78,21 +78,14 @@ class TestHome(BaseTestCase, WagtailTestUtils):
         client = Domain.objects.get(domain="something.test.com").tenant
         assert client == tenant
 
-    # def test_api_fetch(self):
-    #     factory = APIRequestFactory()
-    #     # request = factory.get("/api/v2/pages/")
-    #     # response = view(request)
-    #     response = self.client.get("/api/v2/pages/")
-    #     print(response.data)
-    #     assert True is False
     @pytest.mark.django_db
     def test_client_page(self):
         # checks that public schema is active and has a root page
         page = Page.objects.get(pk=1)
         assert page.title == "Root"
 
-        tenant = Client.objects.get(schema_name="test")
         # checks that test schema can be activated and has a root page
+        tenant = Client.objects.get(schema_name="test")
         with tenant_context(tenant):
             client_page = Page.objects.get(pk=1)
             client_page.title = "Client Root"

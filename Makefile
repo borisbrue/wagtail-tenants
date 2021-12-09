@@ -43,8 +43,8 @@ publish: build ## Publishes a new version to PyPI.
 	@echo '== Success =='
 	@echo 'Go to https://pypi.org/project/wagtail-tenants/ and check that all is well.'
 
-publish-test: build ## Publishes a new version to TestPyPI.
-	@echo '== Publish project to PyPi [TEST] =='
-	twine upload --repository-url https://test.pypi.org/legacy/ dist/*
-	@echo '== Success =='
-	@echo 'Go to https://test.pypi.org/project/wagtail-bakery/ and check that all is well.'
+# publish-test: build ## Publishes a new version to TestPyPI.
+# 	@echo '== Publish project to PyPi [TEST] =='
+# 	twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+# 	@echo '== Success =='
+# 	@echo 'Go to https://test.pypi.org/project/wagtail-bakery/ and check that all is well.'

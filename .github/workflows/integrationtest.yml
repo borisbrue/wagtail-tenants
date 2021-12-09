@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.9]
+        python-version: [3.9.2]
     # Docker Hub image that `container-job` executes in
     # container: python:buster
-    container: ubuntu:trusty
+    container: python:3.9.2-slim-buster
 
     # Service containers to run with `container-job`
     services:

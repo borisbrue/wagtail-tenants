@@ -46,7 +46,7 @@ jobs:
           libmariadbclient-dev \
           libjpeg62-turbo-dev \
           zlib1g-dev \
-          libwebp-dev \
+          libwebp-dev 
           python -m pip install --upgrade pip
           pip install poetry tox tox-gh-actions
       - name: Test with tox and postgres

@@ -11,7 +11,7 @@ jobs:
         python-version: [3.9]
     # Docker Hub image that `container-job` executes in
     # container: python:buster
-    container: python:3.8.1-slim-buster
+    container: python:3.9-buster
 
     # Service containers to run with `container-job`
     services:
@@ -49,6 +49,7 @@ jobs:
           libwebp-dev 
           python -m pip install --upgrade pip
           pip install poetry tox tox-gh-actions
+          poetry install
       - name: Test with tox and postgres
         env:
           # The hostname used to communicate with the PostgreSQL service container

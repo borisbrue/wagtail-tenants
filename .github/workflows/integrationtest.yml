@@ -11,7 +11,7 @@ jobs:
         python-version: [3.9]
     # Docker Hub image that `container-job` executes in
     # container: python:buster
-    container: python:3.9.2
+    container: ubuntu:trusty
 
     # Service containers to run with `container-job`
     services:

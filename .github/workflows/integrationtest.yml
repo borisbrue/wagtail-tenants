@@ -40,6 +40,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          apt-get install build-essential -y
           python -m pip install --upgrade pip
           pip install poetry tox tox-gh-actions
       - name: Test with tox and postgres

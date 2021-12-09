@@ -15,14 +15,11 @@ from wagtail.admin.forms.search import SearchForm
 from wagtail.core import hooks
 from wagtail.core.log_actions import log
 from wagtail.users.utils import user_can_delete_user
-from wagtail.users.views.users import (
-    add_user_perm,
-    change_user_perm,
-    delete_user_perm,
-    get_user_creation_form,
-    get_user_edit_form,
-    get_users_filter_query,
-)
+from wagtail.users.views.users import (add_user_perm, change_user_perm,
+                                       delete_user_perm,
+                                       get_user_creation_form,
+                                       get_user_edit_form,
+                                       get_users_filter_query)
 
 from wagtail_tenants.models import User
 from wagtail_tenants.utils import check_tenant_for_user, is_client_tenant

@@ -25,6 +25,7 @@ flake8-black = "^0.2.3"
 pytest-django = "^4.5.2"
 tox = "^3.24.4"
 pytest-xdist = "^2.4.0"
+factory-boy = "^3.2.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

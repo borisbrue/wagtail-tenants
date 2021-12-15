@@ -1,4 +1,4 @@
-name: Testing the wagtail tenants with postgres
+name: testing
 on: push
 
 jobs:

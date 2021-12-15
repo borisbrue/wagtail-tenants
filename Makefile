@@ -5,13 +5,16 @@ help: ## See what commands are available.
 	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36mmake %-15s\033[0m # %s\n", $$1, $$2}'
 
 
-all: install clean test lint ## Install, test and lint the project.
+all: install clean isort lint coverage ## Install, test and lint the project.
 
 clean: ## Remove Python file artifacts.
+	@echo '== Cleanup =='
+	rm dist/* 2>/dev/null || true
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
 
 install: ## Install dependencies.
+	@echo '== Install all dependencies =='
 	poetry install
 
 doc: ## create the docs.
@@ -21,15 +24,22 @@ flake8: ## Run flake8 on the project.
 	flake8 --select BLK wagtail_tenants/
 
 black: ## Run flake8 on the project.
+	@echo '== Format the files =='
 	black wagtail_tenants/
 
 isort: ## Run isort on the project.
+	@echo '== Sort the imports =='
 	isort wagtail_tenants/
 
 lint: black flake8 isort ## Lint the project.
 
 test: ## Test the project.
 	py.test
+
+coverage:
+	@echo '== Run the tests and coverage =='
+	coverage run -m py.test
+	coverage report -m
 
 build: ## Build the package.
 	@echo '== Cleanup =='

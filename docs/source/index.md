@@ -68,13 +68,28 @@ pip install wagtail-tenants
     DEFAULT_AUTO_FIELD='django.db.models.AutoField'
     ```
 
-4. Set the Database Router to work with the tenants:
+4. Set the Database backend to the **django_tenants** backend:
+
+    ```python
+    DATABASES = {
+        "default": {
+            "ENGINE": "django_tenants.postgresql_backend",
+            "NAME": "db_name",
+            "USER": "db_user",
+            "PASSWORD": "",
+            "HOST": "127.0.0.1",
+            "PORT": "5432",
+        }
+    }
+    ```
+
+5. Set the Database Router to work with the tenants:
 
     ```python
     DATABASE_ROUTERS = ("wagtail_tenants.routers.WagtailTenantSyncRouter",)
     ```
 
-5. Set the authentication backend to fit to our Tenant model.
+6. Set the authentication backend to fit to our Tenant model.
 
     ```python
     AUTHENTICATION_BACKENDS = [
@@ -82,11 +97,11 @@ pip install wagtail-tenants
     ]
     ```
 
-6. Run the migrations with `./manage.py migrate_schemas --shared`
-7. Create a public schema with `./manage.py create_tenant`
-8. Create a superuser for the public tenant `./manage.py create_tenant_superuser`
-9. Start the Server and have fun
-10. You are able to create tenants within the admin of your public wagtailsite. If you want to log into a tenant you need at least one superuser for the tenant. You can use `./manage.py create_tenant_superuser` for that.
+7. Run the migrations with `./manage.py migrate_schemas --shared`
+8. Create a public schema with `./manage.py create_tenant`
+9. Create a superuser for the public tenant `./manage.py create_tenant_superuser`
+10. Start the Server and have fun
+11. You are able to create tenants within the admin of your public wagtailsite. If you want to log into a tenant you need at least one superuser for the tenant. You can use `./manage.py create_tenant_superuser` for that.
 
 
 .. note::

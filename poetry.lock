@@ -203,6 +203,19 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-dbbackup"
+version = "3.3.0"
+description = "Management commands to help backup and restore a project database and media"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+Django = ">=1.5"
+pytz = "*"
+six = "*"
+
+[[package]]
 name = "django-filter"
 version = "21.1"
 description = "Django-filter is a reusable Django application for allowing users to filter querysets dynamically."
@@ -817,7 +830,7 @@ use_chardet_on_py3 = ["chardet (>=3.0.2,<5)"]
 name = "six"
 version = "1.16.0"
 description = "Python 2 and 3 compatibility utilities"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 
@@ -1187,7 +1200,7 @@ docs = []
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6.2"
-content-hash = "079849b82636e1f7d262dfe1d825df4418d346f4fcd54d7f9b202522850d18d5"
+content-hash = "e43d23edc55b86eab644e70b5a2c856e0117ed06e41798470ea376dd541d9a23"
 
 [metadata.files]
 alabaster = [
@@ -1303,6 +1316,9 @@ distlib = [
 django = [
     {file = "Django-3.2.10-py3-none-any.whl", hash = "sha256:df6f5eb3c797b27c096d61494507b7634526d4ce8d7c8ca1e57a4fb19c0738a3"},
     {file = "Django-3.2.10.tar.gz", hash = "sha256:074e8818b4b40acdc2369e67dcd6555d558329785408dcd25340ee98f1f1d5c4"},
+]
+django-dbbackup = [
+    {file = "django-dbbackup-3.3.0.tar.gz", hash = "sha256:bb109735cae98b64ad084e5b461b7aca2d7b39992f10c9ed9435e3ebb6fb76c8"},
 ]
 django-filter = [
     {file = "django-filter-21.1.tar.gz", hash = "sha256:632a251fa8f1aadb4b8cceff932bb52fe2f826dd7dfe7f3eac40e5c463d6836e"},

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "wagtail_tenants"
-version = "0.1.4"
+version = "0.1.5"
 description = "Adds multitenancy based on django_tenants to wagtail cms"
 authors = ["Boris Brue <boris@zuckersalzundpfeffer.de>"]
 license = "MIT"

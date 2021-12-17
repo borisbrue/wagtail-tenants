@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext as _
 from wagtail.contrib.modeladmin.options import ModelAdmin, ModelAdminGroup
 
-from wagtail_tenants.customers.models import Client, Domain
+from wagtail_tenants.customers.models import Client, ClientBackup, Domain
 
 from .models import User
 
@@ -77,3 +77,9 @@ class TenantAdminGroup(ModelAdminGroup):
     menu_label = _("Tenants")
     menu_icon = "group"
     items = (TenantClientAdmin, TenantDomainAdmin)
+
+class TenantBackupAdmin(ModelAdmin):
+    model = ClientBackup
+    list_display = ("client","filename",'created_at',)
+    menu_icon = "redirect"
+    menu_label = _("Backups")

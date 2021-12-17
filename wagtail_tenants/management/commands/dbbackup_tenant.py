@@ -16,7 +16,7 @@ class Command(dbbackupCommand):
 
     @email_uncaught_exception
     def handle(self, *args, **options):
-        self.tenant = options.get('tenant')
+        self.tenant = options.get("tenant")
         super(Command, self).handle(**options)
 
     def _save_new_backup(self, database):

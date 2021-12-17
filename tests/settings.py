@@ -132,6 +132,13 @@ DATABASES = {
 
 DATABASE_ROUTERS = ("wagtail_tenants.routers.WagtailTenantSyncRouter",)
 
+CUSTOM_CONNECTOR_MAPPING = True
+DBBACKUP_CONNECTOR_MAPPING = {
+    'django_tenants.postgresql_backend': 'wagtail_tenants.db.db_backup_connector.TenantPgDumpBinaryConnector',
+}
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR + '/backups'}
+
 AUTH_USER_MODEL = "wagtail_tenants.User"
 TENANT_MODEL = "customers.Client"
 TENANT_DOMAIN_MODEL = "customers.Domain"

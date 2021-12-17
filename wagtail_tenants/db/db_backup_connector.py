@@ -15,8 +15,7 @@ class TenantPgDumpBinaryConnector(PgDumpBinaryConnector):
     drop = True
     tenant = "public"
 
-
-    def _create_dump(self):        
+    def _create_dump(self):
         cmd = "{} {}".format(self.dump_cmd, self.settings["NAME"])
         if self.settings.get("HOST"):
             cmd += " --host={}".format(self.settings["HOST"])

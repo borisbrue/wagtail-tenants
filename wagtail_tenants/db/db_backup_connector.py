@@ -1,4 +1,5 @@
 from dbbackup.db.postgresql import PgDumpBinaryConnector
+from dbbackup.utils import filename_generate
 
 
 class TenantPgDumpBinaryConnector(PgDumpBinaryConnector):
@@ -12,9 +13,10 @@ class TenantPgDumpBinaryConnector(PgDumpBinaryConnector):
     restore_cmd = "pg_restore"
     single_transaction = True
     drop = True
-    
+    tenant = "public"
 
-    def _create_dump(self):
+
+    def _create_dump(self):        
         cmd = "{} {}".format(self.dump_cmd, self.settings["NAME"])
         if self.settings.get("HOST"):
             cmd += " --host={}".format(self.settings["HOST"])
@@ -47,3 +49,10 @@ class TenantPgDumpBinaryConnector(PgDumpBinaryConnector):
         cmd = "{} {} {}".format(self.restore_prefix, cmd, self.restore_suffix)
         stdout, stderr = self.run_command(cmd, stdin=dump, env=self.restore_env)
         return stdout, stderr
+
+    def generate_filename(self, server_name=None):
+        self.database_name = self.database_name + "-" + self.tenant
+        return filename_generate(self.extension, self.database_name, server_name)
+
+    def set_schema(self, schema):
+        self.tenant = schema

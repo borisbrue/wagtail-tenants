@@ -10,6 +10,9 @@ all: install clean isort lint coverage ## Install, test and lint the project.
 clean: ## Remove Python file artifacts.
 	@echo '== Cleanup =='
 	rm dist/* 2>/dev/null || true
+	rm .pytest_cache/* 2>/dev/null || true
+	rm .tox/* 2>/dev/null || true
+	rm htmlcov/* 2>/dev/null || true
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
 

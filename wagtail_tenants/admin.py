@@ -78,8 +78,13 @@ class TenantAdminGroup(ModelAdminGroup):
     menu_icon = "group"
     items = (TenantClientAdmin, TenantDomainAdmin)
 
+
 class TenantBackupAdmin(ModelAdmin):
     model = ClientBackup
-    list_display = ("client","filename",'created_at',)
+    list_display = (
+        "client",
+        "filename",
+        "created_at",
+    )
     menu_icon = "redirect"
     menu_label = _("Backups")

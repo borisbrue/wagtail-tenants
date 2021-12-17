@@ -38,7 +38,11 @@ def catch_signal(signal):
     yield handler
     signal.disconnect(handler)
 
-
+@pytest.fixture(autouse=True, scope='session')
+def test_suite_cleanup_thing():
+    # setup
+    ...
+    # teardown - put your command here
 class TestHome(BaseTestCase, WagtailTestUtils):
     # fixtures = ["test_specific.json"]
 

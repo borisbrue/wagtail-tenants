@@ -16,10 +16,14 @@ class Client(TenantMixin):
         with schema_context("public"):
             super(Client, self).save(*args, **kwargs)
 
+
 class ClientBackup(models.Model):
-    client = models.ForeignKey(Client, related_name='client_backups',on_delete=models.CASCADE)
+    client = models.ForeignKey(
+        Client, related_name="client_backups", on_delete=models.CASCADE
+    )
     created_at = models.DateTimeField(auto_created=True)
-    filename = models.CharField(null=True, blank=True)
+    filename = models.CharField(null=True, blank=True, max_length=80)
+
 
 class Domain(DomainMixin):
     def save(self, *args, **kwargs):

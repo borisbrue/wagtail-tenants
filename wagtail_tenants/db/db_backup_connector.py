@@ -12,6 +12,7 @@ class TenantPgDumpBinaryConnector(PgDumpBinaryConnector):
     restore_cmd = "pg_restore"
     single_transaction = True
     drop = True
+    
 
     def _create_dump(self):
         cmd = "{} {}".format(self.dump_cmd, self.settings["NAME"])
@@ -23,6 +24,7 @@ class TenantPgDumpBinaryConnector(PgDumpBinaryConnector):
             cmd += " --user={}".format(self.settings["USER"])
         cmd += " --no-password"
         cmd += " --format=custom"
+        cmd += " --schema={}".format(self.tenant)
         for table in self.exclude:
             cmd += " --exclude-table={}".format(table)
         cmd = "{} {} {}".format(self.dump_prefix, cmd, self.dump_suffix)

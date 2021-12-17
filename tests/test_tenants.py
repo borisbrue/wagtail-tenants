@@ -98,6 +98,6 @@ class TestHome(BaseTestCase, WagtailTestUtils):
         page = Page.objects.get(pk=1)
         assert page.title == "Root"
 
-    @pytest.mark.django_db
-    def test_dbbackup(self):
-        call_command("dbbackup_tenant","-t=test")
+    # @pytest.mark.django_db
+    # def test_dbbackup(self):
+    #     call_command("dbbackup_tenant","-t=test")

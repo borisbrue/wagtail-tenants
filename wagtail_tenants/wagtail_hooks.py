@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.urls import re_path
 from wagtail.contrib.modeladmin.options import modeladmin_register
 from wagtail.core import hooks
 
@@ -14,21 +14,21 @@ modeladmin_register(TenantAdminGroup)
 @hooks.register("register_admin_urls")
 def tenant_user_urls():
     return [
-        url(r"^users/(\d+)/$", TenantUserViews.edit, name="wagtailusers_edit"),
-        url(r"^users/add/$", TenantUserViews.create, name="wagtailusers_create"),
-        url(r"^users/", TenantUserViews.index, name="wagtailusers_index"),
+        re_path(r"^users/(\d+)/$", TenantUserViews.edit, name="wagtailusers_edit"),
+        re_path(r"^users/add/$", TenantUserViews.create, name="wagtailusers_create"),
+        re_path(r"^users/", TenantUserViews.index, name="wagtailusers_index"),
     ]
 
 
 @hooks.register("register_admin_urls")
 def tenant_user_create_url():
     return [
-        url(
+        re_path(
             r"^wagtail-tenants/admin/link/$",
             TenantUserAdmin.create,
             name="wagtail-tenants__admin_link",
         ),
-        url(
+        re_path(
             r"^wagtail-tenants/admin/",
             TenantUserViews.index,
             name="wagtail-tenants__admin_index",

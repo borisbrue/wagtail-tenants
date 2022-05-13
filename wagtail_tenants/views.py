@@ -1,4 +1,3 @@
-from django.conf.urls import url
 from django.db import transaction
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse

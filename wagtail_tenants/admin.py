@@ -73,18 +73,17 @@ class TenantDomainAdmin(ModelAdmin):
     menu_label = _("Domains")
 
 
-class TenantAdminGroup(ModelAdminGroup):
-    menu_label = _("Tenants")
-    menu_icon = "group"
-    items = (TenantClientAdmin, TenantDomainAdmin)
-
-
 class TenantBackupAdmin(ModelAdmin):
     model = ClientBackup
     list_display = (
-        "client",
         "filename",
         "created_at",
     )
     menu_icon = "redirect"
     menu_label = _("Backups")
+
+
+class TenantAdminGroup(ModelAdminGroup):
+    menu_label = _("Tenants")
+    menu_icon = "group"
+    items = (TenantClientAdmin, TenantDomainAdmin, TenantBackupAdmin)

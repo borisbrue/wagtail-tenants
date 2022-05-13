@@ -21,7 +21,7 @@ class ClientBackup(models.Model):
     client = models.ForeignKey(
         Client, related_name="client_backups", on_delete=models.CASCADE
     )
-    created_at = models.DateTimeField(auto_created=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     filename = models.CharField(null=True, blank=True, max_length=80)
 
 

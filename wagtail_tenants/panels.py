@@ -1,4 +1,5 @@
 from wagtail.admin.ui.components import Component
+from django.utils.translation import gettext as _
 from wagtail.core.models import UserPagePermissionsProxy
 
 
@@ -11,7 +12,13 @@ class TenantPanel(Component):
         request = parent_context["request"]
         context = super().get_context_data(parent_context)
         tenant = request.tenant
+        list_items = {
+            "name": _("Name"),
+            "trial": _("On trial"),
+            "paid_until": _("Paid until"),
+        }
         context["request"] = request
         context["tenant"] = tenant
+        context["list_items"] = list_items
         context["csrf_token"] = parent_context["csrf_token"]
         return context

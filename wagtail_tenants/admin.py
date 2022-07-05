@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext as _
+
+from wagtail.admin.menu import MenuItem
 from wagtail.contrib.modeladmin.options import ModelAdmin, ModelAdminGroup
 
 from wagtail_tenants.customers.models import Client, ClientBackup, Domain
@@ -87,3 +89,19 @@ class TenantAdminGroup(ModelAdminGroup):
     menu_label = _("Tenants")
     menu_icon = "group"
     items = (TenantClientAdmin, TenantDomainAdmin, TenantBackupAdmin)
+
+    def get_submenu_items(self):
+        menu_items = []
+        item_order = 1
+        for modeladmin in self.modeladmin_instances:
+            menu_items.append(modeladmin.get_menu_item(order=item_order))
+            item_order += 1
+        menu_items.append(
+            MenuItem(
+                _("Link Admin"),
+                "/admin/wagtail-tenants/admin/link/",
+                classnames="icon icon-group",
+                order=3000,
+            )
+        )
+        return menu_items

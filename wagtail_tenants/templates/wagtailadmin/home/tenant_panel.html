@@ -5,13 +5,13 @@
     <ul class="stats">
         <li>
             <div>
-                Name: {{tenant.name}}
+                {{list_items.name}}: {{tenant.name}}
             </div>
             <div>
-                Trial: {{tenant.on_trial}}
+                {{list_items.trial}}: {{tenant.on_trial}}
             </div>
             <div>
-                Guthaben bis: {{tenant.paid_until}}
+                {{list_items.paid_until}}: {{tenant.paid_until}}
             </div>
         </li>
         {% comment %} {% for item in summary_items %}

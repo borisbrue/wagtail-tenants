@@ -11,6 +11,7 @@ class Client(TenantMixin):
 
     # default true, schema will be automatically created and synced when it is saved
     auto_create_schema = True
+    auto_drop_schema = True
 
     def save(self, *args, **kwargs):
         with schema_context("public"):

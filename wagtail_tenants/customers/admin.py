@@ -6,7 +6,7 @@ from .models import Client, Domain
 
 @admin.register(Client)
 class ClientAdmin(TenantAdminMixin, admin.ModelAdmin):
-    list_display = ("name", "paid_until")
+    list_display = ("name", "paid_until", "schema_name")
 
 
 @admin.register(Domain)

@@ -1,5 +1,5 @@
-from wagtail.admin.ui.components import Component
 from django.utils.translation import gettext as _
+from wagtail.admin.ui.components import Component
 from wagtail.core.models import UserPagePermissionsProxy
 
 

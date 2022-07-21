@@ -23,7 +23,7 @@ pip install wagtail-tenants
 
     ```python
     SHARED_APPS = (
-        'wagtail_tenants.customers'
+        'wagtail_tenants.customers',
         'wagtail_tenants',
         'wagtail.contrib.forms',
         ...

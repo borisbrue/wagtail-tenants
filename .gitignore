@@ -157,3 +157,5 @@ cython_debug/
 
 # pyenv
 .python-version
+
+.vscode/

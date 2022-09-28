@@ -31,18 +31,47 @@ SHARED_APPS = (
     "tests",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
-    "wagtail.contrib.modeladmin",
-    "wagtail.api.v2",
     "wagtail.embeds",
     "wagtail.sites",
-    "wagtail_tenants.users",
     "wagtail.users",
     "wagtail.snippets",
     "wagtail.documents",
     "wagtail.images",
     "wagtail.search",
     "wagtail.admin",
-    "wagtail.core",
+    "wagtail_tenants.users",
+    "wagtail",
+    "modelcluster",
+    "taggit",
+
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+
+    "wagtail.api.v2",
+    "rest_framework",
+)
+
+
+TENANT_APPS = [
+    "wagtail_tenants",
+    "tests",
+    
+    "wagtail.contrib.forms",
+    "wagtail.contrib.redirects",
+    "wagtail.embeds",
+    "wagtail.sites",
+    "wagtail.users",
+    "wagtail.snippets",
+    "wagtail.documents",
+    "wagtail.images",
+    "wagtail.search",
+    "wagtail.admin",
+    "wagtail_tenants.users",
+    "wagtail",
     "modelcluster",
     "taggit",
     "django.contrib.admin",
@@ -50,31 +79,6 @@ SHARED_APPS = (
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "django.contrib.staticfiles",
-)
-
-
-TENANT_APPS = [
-    "wagtail_tenants",
-    "django.contrib.contenttypes",
-    "tests",
-    "wagtail.contrib.forms",
-    "wagtail.contrib.redirects",
-    "wagtail.contrib.modeladmin",
-    "wagtail.embeds",
-    "wagtail.sites",
-    "wagtail_tenants.users",
-    "wagtail.users",
-    "wagtail.snippets",
-    "wagtail.documents",
-    "wagtail.images",
-    "wagtail.search",
-    "wagtail.admin",
-    "wagtail.core",
-    "modelcluster",
-    "taggit",
-    "django.contrib.admin",
-    "django.contrib.auth",
 ]
 INSTALLED_APPS = list(SHARED_APPS) + [
     app for app in TENANT_APPS if app not in SHARED_APPS

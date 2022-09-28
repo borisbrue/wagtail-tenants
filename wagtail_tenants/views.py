@@ -76,19 +76,7 @@ class TenantUserAdmin:
                         ],
                     )
                     return redirect("wagtail-tenants__admin_link")
-                #     tenant_user = form.save()
-                #     user.tenant = request.tenant
-                #     user.save()
-                #     log(user, "wagtail.create")
-                # messages.success(
-                #     request,
-                #     _("User '{0}' created.").format(user),
-                #     buttons=[
-                #         messages.button(
-                #             reverse("wagtailusers_users:edit", args=(user.pk,)), _("Edit")
-                #         )
-                #     ],
-                # )
+                
         else:
             form = TenantAdminUserForm()
             return TemplateResponse(

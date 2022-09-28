@@ -96,7 +96,7 @@ pip install wagtail-tenants
     ```
 
 7. Run the migrations with `./manage.py migrate_schemas --shared`
-8. Create a public schema with `./manage.py create_tenant`
+8. Create a public schema with `./manage.py create_tenant` and use `public` as the schema name and `localhost`
 9. Create a superuser for the public tenant `./manage.py create_tenant_superuser`
 10. Start the Server and have fun
 11. You are able to create tenants within the admin of your public wagtailsite. If you want to log into a tenant you need at least one superuser for the tenant. You can use `./manage.py create_tenant_superuser` for that.

@@ -22,7 +22,7 @@ django-dbbackup = "^3.3.0"
 black = "22.3.0"
 flake8 = "^4.0.1"
 sphinx = {version = "^3", optional = true}
-wagtail = "^2.15.1"
+wagtail = "^4.0.2"
 isort = "^5.10.1"
 flake8-black = "0.3.3"
 pytest-django = "^4.5.2"

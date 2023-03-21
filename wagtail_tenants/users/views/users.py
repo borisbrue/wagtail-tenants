@@ -9,10 +9,10 @@ from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.utils.translation import gettext as _
 from django.views.decorators.vary import vary_on_headers
+from wagtail import hooks
 from wagtail.admin import messages
 from wagtail.admin.auth import any_permission_required, permission_required
 from wagtail.admin.forms.search import SearchForm
-from wagtail import hooks
 from wagtail.log_actions import log
 from wagtail.users.utils import user_can_delete_user
 from wagtail.users.views.users import (

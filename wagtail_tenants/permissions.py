@@ -1,5 +1,5 @@
+from django_tenants.utils import get_public_schema_name, get_tenant_model
 from rest_framework.permissions import BasePermission
-from django_tenants.utils import get_tenant_model, get_public_schema_name
 
 
 class TenantAccessPermission(BasePermission):

@@ -6,8 +6,9 @@ class WagtailTenantsConfig(AppConfig):
     name = "wagtail_tenants"
 
     def ready(self):
-        import wagtail_tenants.signals  # noqa
         from wagtail.users.apps import WagtailUsersAppConfig
+
+        import wagtail_tenants.signals  # noqa
 
         WagtailUsersAppConfig.group_viewset = (
             "wagtail_tenants.views.TenantAwareGroupViewSet"

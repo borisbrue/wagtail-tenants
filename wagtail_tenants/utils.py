@@ -1,7 +1,7 @@
+from django.apps import apps
 from django.conf import settings
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
-from django.apps import apps
 
 """
 Checks that the user has a tenant and that the tenant is the given one.

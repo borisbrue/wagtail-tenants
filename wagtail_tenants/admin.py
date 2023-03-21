@@ -2,8 +2,6 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext as _
 from wagtail.admin.menu import MenuItem
-
-
 from wagtail.contrib.modeladmin.helpers import PermissionHelper
 from wagtail.contrib.modeladmin.menus import ModelAdminMenuItem
 from wagtail.contrib.modeladmin.options import ModelAdmin, ModelAdminGroup
@@ -12,8 +10,10 @@ from wagtail_tenants.customers.models import Client, ClientBackup, Domain
 
 from .models import User
 
+
 class WagtailTenantsPermissionHelper(PermissionHelper):
-        ...
+    ...
+
 
 # Register your models here.
 class CustomUserAdmin(UserAdmin):
@@ -118,7 +118,6 @@ class TenantAdminMenuItem(MenuItem):
         return self.model_admin.permission_helper.user_can_list(request.user)
 
 
-
 class TenantAdminGroup(ModelAdminGroup):
     menu_label = _("Tenants")
     menu_icon = "group"
@@ -126,7 +125,7 @@ class TenantAdminGroup(ModelAdminGroup):
     permission_helper_class = WagtailTenantsPermissionHelper
 
     def get_submenu_items(self):
-       
+
         menu_items = []
         item_order = 1
         for modeladmin in self.modeladmin_instances:
@@ -134,16 +133,14 @@ class TenantAdminGroup(ModelAdminGroup):
             item_order += 1
         if menu_items:
             fake_model_admin = self.modeladmin_instances[0]
-            fake_model_admin.menu_item_name = _("Link Admin"),
+            fake_model_admin.menu_item_name = (_("Link Admin"),)
             menu_items.append(
                 TenantAdminMenuItem(
-                    model_admin = self.modeladmin_instances[0],
-                    name = _("Link Admin"),
-                    url = "/admin/wagtail-tenants/admin/link/",
+                    model_admin=self.modeladmin_instances[0],
+                    name=_("Link Admin"),
+                    url="/admin/wagtail-tenants/admin/link/",
                     classnames="icon icon-group",
                     order=3000,
                 )
             )
         return menu_items
-
-     

@@ -1,12 +1,13 @@
+from django.apps import apps
 from django.urls import re_path
 from wagtail.contrib.modeladmin.options import modeladmin_register
-from wagtail.core import hooks
+from wagtail import hooks
 
 import wagtail_tenants.users.views.users as TenantUserViews  # import index, edit, create
-
+from wagtail_tenants.utils import get_allowed_features, get_tenant_aware_apps
 from .admin import TenantAdminGroup
 from .panels import TenantPanel
-from .views import TenantUserAdmin
+from .views import TenantUserAdmin, TenantAwareGroupViewSet
 
 modeladmin_register(TenantAdminGroup)
 
@@ -40,3 +41,19 @@ def tenant_user_create_url():
 def add_wagtail_tenants_panels(request, panels):
     if request.tenant.schema_name != "public":
         panels.append(TenantPanel())
+
+
+@hooks.register("construct_main_menu")
+def customize_menu_for_tenant(request, menu_items):
+    current_tenant = request.tenant
+    # Get the allowed feature menu names for the current tenant
+    allowed_features = get_allowed_features(current_tenant)
+    # Get the tenant-aware app names
+    tenant_aware_apps = get_tenant_aware_apps(current_tenant)
+    # Filter the menu items based on the allowed features and tenant-aware apps
+    menu_items[:] = [
+        item
+        for item in menu_items
+        if (item.name in allowed_features and item.name in tenant_aware_apps)
+        or item.name not in tenant_aware_apps
+    ]

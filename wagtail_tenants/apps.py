@@ -1,5 +1,4 @@
 from django.apps import AppConfig
-from wagtail.users.apps import WagtailUsersAppConfig
 
 
 class WagtailTenantsConfig(AppConfig):
@@ -8,3 +7,8 @@ class WagtailTenantsConfig(AppConfig):
 
     def ready(self):
         import wagtail_tenants.signals  # noqa
+        from wagtail.users.apps import WagtailUsersAppConfig
+
+        WagtailUsersAppConfig.group_viewset = (
+            "wagtail_tenants.views.TenantAwareGroupViewSet"
+        )

@@ -12,8 +12,8 @@ from django.views.decorators.vary import vary_on_headers
 from wagtail.admin import messages
 from wagtail.admin.auth import any_permission_required, permission_required
 from wagtail.admin.forms.search import SearchForm
-from wagtail.core import hooks
-from wagtail.core.log_actions import log
+from wagtail import hooks
+from wagtail.log_actions import log
 from wagtail.users.utils import user_can_delete_user
 from wagtail.users.views.users import (
     add_user_perm,

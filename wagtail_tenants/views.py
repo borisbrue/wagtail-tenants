@@ -6,11 +6,13 @@ from django.utils.translation import gettext as _
 from django_tenants.utils import tenant_context
 from wagtail.admin import messages
 from wagtail.admin.views import account
-from wagtail.core.log_actions import log
+from wagtail.log_actions import log
 
 from wagtail_tenants.backends import UserModel
 from wagtail_tenants.forms import TenantAdminUserForm
 from wagtail_tenants.utils import check_tenant_for_user
+from wagtail.users.views.groups import CreateView, EditView, GroupViewSet
+from .forms import TenantAwareGroupForm
 
 
 class TenantLoginView(account.LoginView):
@@ -76,7 +78,7 @@ class TenantUserAdmin:
                         ],
                     )
                     return redirect("wagtail-tenants__admin_link")
-                
+
         else:
             form = TenantAdminUserForm()
             return TemplateResponse(
@@ -86,3 +88,33 @@ class TenantUserAdmin:
                     "form": form,
                 },
             )
+
+
+class TenantAwareGroupCreateView(CreateView):
+    def get_form_kwargs(self):
+        """Passes the user to the form class.
+        This is necessary to only display members that belong to a given user
+        """
+
+        kwargs = super(CreateView, self).get_form_kwargs()
+        kwargs["user"] = self.request.user
+        return kwargs
+
+
+class TenantAwareGroupEditView(EditView):
+    def get_form_kwargs(self):
+        """Passes the user to the form class.
+        This is necessary to only display members that belong to a given user
+        """
+
+        kwargs = super(EditView, self).get_form_kwargs()
+        kwargs["user"] = self.request.user
+        return kwargs
+
+
+class TenantAwareGroupViewSet(GroupViewSet):
+    add_view_class = TenantAwareGroupCreateView
+    edit_view_class = TenantAwareGroupEditView
+
+    def get_form_class(self, for_update=False):
+        return TenantAwareGroupForm

@@ -11,7 +11,7 @@ from wagtail.tests.utils import WagtailTestUtils
 from wagtail_tenants.customers.models import Client, Domain
 from wagtail_tenants.models import User
 
-from wagtail.core.models import Page, Site
+from wagtail.models import Page, Site
 
 
 from django_tenants.utils import (
@@ -38,11 +38,14 @@ def catch_signal(signal):
     yield handler
     signal.disconnect(handler)
 
-@pytest.fixture(autouse=True, scope='session')
+
+@pytest.fixture(autouse=True, scope="session")
 def test_suite_cleanup_thing():
     # setup
     ...
     # teardown - put your command here
+
+
 class TestHome(BaseTestCase, WagtailTestUtils):
     # fixtures = ["test_specific.json"]
 

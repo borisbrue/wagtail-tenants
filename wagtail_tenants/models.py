@@ -10,3 +10,9 @@ class User(AbstractUser):
     tenant = models.ForeignKey(
         Client, related_name="tenant", on_delete=models.CASCADE, null=True, blank=True
     )
+
+    """
+    This has to be implemented in terms of not referencing the new reference index
+    see: https://github.com/wagtail/wagtail/issues/9731
+    """
+    wagtail_reference_index_ignore = True

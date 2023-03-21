@@ -100,3 +100,35 @@ pip install wagtail-tenants
 9. Create a superuser for the public tenant `./manage.py create_tenant_superuser`
 10. Start the Server and have fun
 11. You are able to create tenants within the admin of your public wagtailsite. If you want to log into a tenant you need at least one superuser for the tenant. You can use `./manage.py create_tenant_superuser` for that.
+
+
+### Update 0.1.10
+
+The new version of wagtail_tenants is now able to archive the follwing features:
+
+#### wagtail 4.2. support
+
+As the developemt of wagtail still goes on, so we do. Wagtail incuded a reference index for models it was necessary to handle this feature, as we don 't need this feature on our tenant models.
+
+#### Create tenantaware apps
+
+Only users of a given tenant are able to interact within the wagtail admin with that kind of app.
+This works in two ways:
+
+1. Add a tenantaware property to the apps AppConfig class in `yourtenantapp.apps.py` 
+in the `admin.py` create a ModelAdmin or ModelAdminGroup for your app and use the `menu_item_name` property to fit to your apps name from your AppConfig. If this fits the app will be hidden for all tenants withou a TenantFeaure of the same name. This feature is good for providing different tiers of your app (eg. free | premium ) 
+
+2. You can specify the tenant directly within the AppConfig so that only users of the tenant have access to this app. This is necessary if you want to create complete and complex functionality only for one tenant. 
+
+#### Exclude permissions from normal users in the group create and group edit view
+
+We are able to hide apps from the group create and group edit views in the wagtail admin. With this approach it is possible to create a tenant admin group with all permissions and distribute it to a tenant user. The tenant admin is able to create and edit groups, but you can decide which apps should be excluded from the view. By default this should include all customers apps. But feel free to extend the list.
+
+```python
+TENANT_EXCLUDE_MODEL_PERMISSIONS = [
+    "customers.Client",
+    "customers.ClientFeature"
+    "customers.Domain",
+    "customers.ClientBackup",
+]
+```

@@ -10,6 +10,8 @@ class ClientFeature(models.Model):
     def __str__(self):
         return self.name
 
+    wagtail_reference_index_ignore = True
+
 
 class Client(TenantMixin):
     name = models.CharField(max_length=100)

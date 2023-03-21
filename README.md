@@ -116,9 +116,17 @@ Only users of a given tenant are able to interact within the wagtail admin with 
 This works in two ways:
 
 1. Add a tenantaware property to the apps AppConfig class in `yourtenantapp.apps.py` 
-in the `admin.py` create a ModelAdmin or ModelAdminGroup for your app and use the `menu_item_name` property to fit to your apps name from your AppConfig. If this fits the app will be hidden for all tenants withou a TenantFeaure of the same name. This feature is good for providing different tiers of your app (eg. free | premium ) 
+in the `admin.py` create a ModelAdmin or ModelAdminGroup for your app and use the `menu_item_name` property to fit to your apps name from your AppConfig. If this fits the app will be hidden for all tenants withou a TenantFeaure of the same name. This feature is good for providing different tiers of your app (eg. free | premium )
 
-2. You can specify the tenant directly within the AppConfig so that only users of the tenant have access to this app. This is necessary if you want to create complete and complex functionality only for one tenant. 
+2. You can specify the tenant directly within the AppConfig so that only users of the tenant have access to this app. This is necessary if you want to create complete and complex functionality only for one tenant. To archive this you have to add the `WagtailTenantPermissionMiddleware`to your middlewares in your settings like so: 
+
+```python
+MIDDLEWARE = [
+    "wagtail_tenants.middleware.main.WagtailTenantMainMiddleware",
+    "wagtail_tenants.middleware.main.WagtailTenantPermissionMiddleware",
+    "..."
+]
+```
 
 #### Exclude permissions from normal users in the group create and group edit view
 
@@ -127,7 +135,7 @@ We are able to hide apps from the group create and group edit views in the wagta
 ```python
 TENANT_EXCLUDE_MODEL_PERMISSIONS = [
     "customers.Client",
-    "customers.ClientFeature"
+    "customers.ClientFeature",
     "customers.Domain",
     "customers.ClientBackup",
 ]

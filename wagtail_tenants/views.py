@@ -99,6 +99,7 @@ class TenantAwareGroupCreateView(CreateView):
 
         kwargs = super(CreateView, self).get_form_kwargs()
         kwargs["user"] = self.request.user
+        kwargs["tenant"] = self.request.tenant
         return kwargs
 
 
@@ -110,6 +111,7 @@ class TenantAwareGroupEditView(EditView):
 
         kwargs = super(EditView, self).get_form_kwargs()
         kwargs["user"] = self.request.user
+        kwargs["tenant"] = self.request.tenant
         return kwargs
 
 

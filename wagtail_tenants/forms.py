@@ -26,6 +26,7 @@ class TenantAdminUserForm(forms.Form):
 class TenantAwareGroupForm(GroupForm):
     def __init__(self, *args, **kwargs):
         user = kwargs.pop("user", None)
+        current_tenant = kwargs.pop("tenant", None)
         super().__init__(*args, **kwargs)
 
         for fn in hooks.get_hooks("register_permissions"):
@@ -36,7 +37,7 @@ class TenantAwareGroupForm(GroupForm):
         if user:
             if not user.is_superuser:
                 content_type_ids_to_exclude = filter_permissions_reserved_for_superuser(
-                    self.registered_permissions
+                    current_tenant, self.registered_permissions
                 )
 
         aviable_permissions = self.registered_permissions.exclude(

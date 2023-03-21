@@ -19,12 +19,27 @@ def is_client_tenant(tenant):
     return tenant.schema_name != "public"
 
 
-def filter_permissions_reserved_for_superuser(permissions):
+def filter_permissions_reserved_for_superuser(current_tenant, registered_permissions):
     model_names_to_exclude = settings.TENANT_EXCLUDE_MODEL_PERMISSIONS
     content_type_ids_to_exclude = []
+
+    ## Get the content type IDs to exclude from app configs
+    tenant_aware_apps_models = set()
+    for app in apps.get_app_configs():
+        if getattr(app, "tenantaware", False):
+            tenant_aware_apps_models.update(app.get_models())
+        if getattr(app, "allow_tenant", False):
+            if app.allow_tenant != current_tenant.schema_name:
+                tenant_aware_apps_models.update(app.get_models())
+    for model_class in tenant_aware_apps_models:
+        content_type = ContentType.objects.get_for_model(model_class)
+        content_type_ids_to_exclude.append(content_type.id)
+
+    ## Get the content type IDs to exclude from settings
     for model_name in model_names_to_exclude:
         app_label, model_name = model_name.split(".")
         model_class = apps.get_model(app_label, model_name)
+
         content_type = ContentType.objects.get_for_model(model_class)
         content_type_ids_to_exclude.append(content_type.id)
 
@@ -39,7 +54,6 @@ def get_allowed_features(current_tenant):
 
 
 def get_tenant_aware_apps(current_tenant):
-    print("get_tenant_aware_apps")
     tenant_aware_apps = []
     for app in apps.get_app_configs():
         if getattr(app, "tenantaware", False):

@@ -11,7 +11,8 @@ sphinx:
 python:
   # Install our python package before building the docs
   install:
-    - method: poetry
+    - method: pip
       path: .
       extra_requirements:
         - docs
+        - myst-parser

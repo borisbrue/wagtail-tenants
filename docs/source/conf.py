@@ -17,7 +17,7 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
     "sphinx.ext.intersphinx",
-    "myst-parser",
+    "myst_parser",
 ]
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3/", None),

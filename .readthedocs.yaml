@@ -15,4 +15,4 @@ python:
       path: .
       extra_requirements:
         - docs
-        - myst-parser
+        - myst_parser

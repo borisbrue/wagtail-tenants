@@ -79,7 +79,10 @@ class Command(BaseCommand):
                                 input_msg,
                                 default,
                             )
-
+                        elif field.get_internal_type() == "DateField":
+                            input_msg = "%s ('YYYY-MM-DD')" % (input_msg)
+                        elif field.get_internal_type() == "BooleanField":
+                            input_msg = "%s ('True' or 'False')" % (input_msg)
                         input_value = input(force_str("%s: " % input_msg)) or default
                         tenant_data[field.attname] = input_value
                 tenant = self.store_tenant(**tenant_data)
@@ -103,7 +106,6 @@ class Command(BaseCommand):
                                 input_msg,
                                 default,
                             )
-
                         input_value = input(force_str("%s: " % input_msg)) or default
                         domain_data[field.attname] = input_value
                 domain = self.store_tenant_domain(**domain_data)
@@ -131,7 +133,8 @@ class Command(BaseCommand):
         except exceptions.ValidationError as e:
             self.stderr.write("Error: %s" % "; ".join(e.messages))
             return None
-        except IntegrityError:
+        except IntegrityError as e:
+            self.stderr.write("%s" % e)
             return None
 
     def store_tenant_domain(self, **fields):
@@ -142,5 +145,6 @@ class Command(BaseCommand):
         except exceptions.ValidationError as e:
             self.stderr.write("Error: %s" % "; ".join(e.messages))
             return None
-        except IntegrityError:
+        except IntegrityError as e:
+            self.stderr.write("%s" % e)
             return None

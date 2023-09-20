@@ -5,7 +5,18 @@ from django_tenants.utils import schema_context
 
 class ClientFeature(models.Model):
     name = models.CharField(max_length=100)
-    menu_name = models.CharField(max_length=100)
+    menu_name = models.CharField(max_length=100, blank=True, null=True)
+    app_label = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+    wagtail_reference_index_ignore = True
+
+
+class ClientFeatureGroup(models.Model):
+    name = models.CharField(max_length=100)
+    features = models.ManyToManyField(ClientFeature, blank=True)
 
     def __str__(self):
         return self.name

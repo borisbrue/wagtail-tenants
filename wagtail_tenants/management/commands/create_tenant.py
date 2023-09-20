@@ -3,7 +3,7 @@ from django.core.management import call_command
 from django.core.management.base import BaseCommand, CommandError
 from django.db.utils import IntegrityError
 from django.utils.encoding import force_str
-from django_tenants.utils import get_tenant_model, get_tenant_domain_model
+from django_tenants.utils import get_tenant_domain_model, get_tenant_model
 
 
 class Command(BaseCommand):

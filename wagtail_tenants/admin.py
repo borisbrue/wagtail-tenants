@@ -6,7 +6,13 @@ from wagtail.contrib.modeladmin.helpers import PermissionHelper
 from wagtail.contrib.modeladmin.menus import ModelAdminMenuItem
 from wagtail.contrib.modeladmin.options import ModelAdmin, ModelAdminGroup
 
-from wagtail_tenants.customers.models import Client, ClientBackup, Domain
+from wagtail_tenants.customers.models import (
+    Client,
+    ClientBackup,
+    Domain,
+    ClientFeature,
+    ClientFeatureGroup,
+)
 
 from .models import User
 
@@ -73,6 +79,20 @@ class TenantClientAdmin(ModelAdmin):
     menu_label = _("Clients")
 
 
+class TenantClientFeatureAdmin(ModelAdmin):
+    model = ClientFeature
+    list_display = ("name", "menu_name", "app_label")
+    menu_icon = "user"
+    menu_label = _("Features")
+
+
+class TenantClientFeatureGroupAdmin(ModelAdmin):
+    model = ClientFeatureGroup
+    list_display = ("name", "features")
+    menu_icon = "user"
+    menu_label = _("Plans")
+
+
 class TenantDomainAdmin(ModelAdmin):
     model = Domain
     list_display = ("domain", "tenant")
@@ -121,11 +141,16 @@ class TenantAdminMenuItem(MenuItem):
 class TenantAdminGroup(ModelAdminGroup):
     menu_label = _("Tenants")
     menu_icon = "group"
-    items = (TenantClientAdmin, TenantDomainAdmin, TenantBackupAdmin)
+    items = (
+        TenantClientAdmin,
+        TenantClientFeatureAdmin,
+        TenantClientFeatureGroupAdmin,
+        TenantDomainAdmin,
+        TenantBackupAdmin,
+    )
     permission_helper_class = WagtailTenantsPermissionHelper
 
     def get_submenu_items(self):
-
         menu_items = []
         item_order = 1
         for modeladmin in self.modeladmin_instances:

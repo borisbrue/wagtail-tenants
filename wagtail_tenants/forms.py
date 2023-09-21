@@ -15,7 +15,6 @@ UserModel = get_user_model()
 
 
 class TenantAdminUserForm(forms.Form):
-
     superusers = UserModel.objects.filter(is_staff=True)
     tenants = Client.objects.exclude(schema_name="public")
 
@@ -39,6 +38,7 @@ class TenantAwareGroupForm(GroupForm):
                 content_type_ids_to_exclude = filter_permissions_reserved_for_superuser(
                     current_tenant, self.registered_permissions
                 )
+            ...
 
         aviable_permissions = self.registered_permissions.exclude(
             content_type__id__in=content_type_ids_to_exclude

@@ -52,9 +52,11 @@ def customize_menu_for_tenant(request, menu_items):
     # Get the tenant-aware app names
     tenant_aware_apps = get_tenant_aware_apps(current_tenant)
     # Filter the menu items based on the allowed features and tenant-aware apps
-    menu_items[:] = [
-        item
-        for item in menu_items
-        if (item.name in allowed_features and item.name in tenant_aware_apps)
-        or item.name not in tenant_aware_apps
-    ]
+    for item in menu_items:
+        print(item.name)
+    # menu_items[:] = [
+    #     item
+    #     for item in menu_items
+    #     if (item.name in allowed_features and item.name in tenant_aware_apps)
+    #     or item.name not in tenant_aware_apps
+    # ]

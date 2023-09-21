@@ -30,6 +30,9 @@ class Client(TenantMixin):
     on_trial = models.BooleanField()
     created_on = models.DateField(auto_now_add=True)
     features = models.ManyToManyField(ClientFeature, blank=True)
+    plan = models.ForeignKey(
+        ClientFeatureGroup, on_delete=models.SET_NULL, null=True, related_name="tenants"
+    )
     # default true, schema will be automatically created and synced when it is saved
     auto_create_schema = True
     auto_drop_schema = True

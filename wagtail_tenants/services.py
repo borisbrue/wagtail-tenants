@@ -11,7 +11,7 @@ def create_tenant_superuser():
 def create_tenant_admingroup(tenant):
     plan_apps = tenant.plan.features.all().values_list("app_label", flat=True)
     with tenant_context(tenant):
-        ensure_group_exists_and_assign_permissions("Administratoren", plan_apps)
+        ensure_group_exists_and_assign_permissions("admins", plan_apps)
 
 
 def create_tenant_backup():

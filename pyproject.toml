@@ -11,7 +11,7 @@ repository = "https://github.com/borisbrue/wagtail-tenants"
 [tool.poetry.dependencies]
 python = "^3.9.0"
 django-tenants = "^3.3.4"
-django-dbbackup = "^3.3.0"
+django-dbbackup = "^4.0.2"
 
 
 

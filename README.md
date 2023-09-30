@@ -140,3 +140,6 @@ TENANT_EXCLUDE_MODEL_PERMISSIONS = [
     "customers.ClientBackup",
 ]
 ```
+
+## Update 0.3.0
+I have worked on the UI and added some functionality for handling different types of tenants. You are now able to define features and featureGroups aka plans for your tenants based on the apps inside your project. To use this feature you have to flag your apps as tenantaware. After that you can scan the project with an command called scan_tenantaware_apps. Each app with the tenantaware property will be added to a featurelist. You are able to activate the features for your tenants. You can do this manually or use the plans. Each tenant can have one plan and every plan can have multible features. If you add a feature directly to a tenant the features of the plan are still active for that tenant. This is usefull to fullfil your customers needs and make them happy to just add a specific feature and not switch the whole plan for the tenant.

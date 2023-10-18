@@ -9,7 +9,7 @@ def create_tenant_superuser():
 
 
 def create_tenant_admingroup(tenant):
-    if not tenant.plan.features.exists():
+    if not tenant.plan.exists():
         return
     plan_apps = tenant.plan.features.all().values_list("app_label", flat=True)
     with tenant_context(tenant):

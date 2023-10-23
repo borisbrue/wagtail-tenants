@@ -5,7 +5,7 @@ from wagtail.admin.menu import MenuItem
 from wagtail.contrib.modeladmin.helpers import PermissionHelper
 from wagtail.contrib.modeladmin.menus import ModelAdminMenuItem
 from wagtail.contrib.modeladmin.options import ModelAdmin, ModelAdminGroup
-
+from wagtail_tenants.forms import SmtpAuthenticatorForm
 from wagtail_tenants.customers.models import (
     Client,
     ClientBackup,
@@ -81,6 +81,7 @@ class TenantClientAdmin(ModelAdmin):
 
 class TenantSmtpAuthenticatorAdmin(ModelAdmin):
     model = SmtpAuthenticator
+    form = SmtpAuthenticatorForm
     list_display = ("tenant", "smtp_user", "smtp_host", "smtp_port")
     menu_icon = "user"
     menu_label = _("SMTP Authenticators")

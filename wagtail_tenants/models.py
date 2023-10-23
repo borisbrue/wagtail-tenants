@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
-from django.db import models
+from django.db import models, connection
+
 
 from wagtail_tenants.customers.models import Client
 
@@ -50,3 +51,10 @@ class SmtpAuthenticator(models.Model):
     ssl_certfile = models.FileField(null=True, blank=True)
 
     wagtail_reference_index_ignore = True
+
+    def save(self, *args, **kwargs):
+        ## Ensure that the tenant is the current tenant
+        self.tenant = connection.tenant
+        if not self.site:
+            raise ValueError("A site is required")
+        super(SmtpAuthenticator, self).save(*args, **kwargs)

@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models, connection
-
+from wagtail.admin.panels import FieldPanel
 
 from wagtail_tenants.customers.models import Client
 
@@ -38,9 +38,19 @@ class SmtpAuthenticator(models.Model):
         null=True,
         blank=True,
     )
-    smtp_user = models.CharField(max_length=50)
+    smtp_user = models.CharField(
+        max_length=50,
+        null=True,
+        blank=True,
+        help_text="Leave blank to use the same username as the email address.",
+    )
     email = models.EmailField()
-    smtp_password = models.CharField(max_length=128)
+    smtp_password = models.CharField(
+        max_length=128,
+        null=True,
+        blank=True,
+        help_text="Leave blank to use the same password as the email address.",
+    )
     smtp_host = models.CharField(max_length=100)
     smtp_port = models.PositiveIntegerField(default=587)
     use_tls = models.BooleanField(default=False)
@@ -51,6 +61,21 @@ class SmtpAuthenticator(models.Model):
     ssl_certfile = models.FileField(null=True, blank=True)
 
     wagtail_reference_index_ignore = True
+
+    panels = [
+        FieldPanel("site"),
+        FieldPanel("smtp_user"),
+        FieldPanel("smtp_password"),
+        FieldPanel("email"),
+        FieldPanel("smtp_host"),
+        FieldPanel("smtp_port"),
+        FieldPanel("fail_silently"),
+        FieldPanel("timeout"),
+        FieldPanel("use_tls"),
+        FieldPanel("use_ssl"),
+        FieldPanel("ssl_keyfile"),
+        FieldPanel("ssl_certfile"),
+    ]
 
     def save(self, *args, **kwargs):
         ## Ensure that the tenant is the current tenant

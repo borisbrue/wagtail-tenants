@@ -43,14 +43,12 @@ SHARED_APPS = (
     "wagtail",
     "modelcluster",
     "taggit",
-
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     "wagtail.api.v2",
     "rest_framework",
 )
@@ -59,7 +57,6 @@ SHARED_APPS = (
 TENANT_APPS = [
     "wagtail_tenants",
     "tests",
-    
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.embeds",
@@ -138,10 +135,10 @@ DATABASE_ROUTERS = ("wagtail_tenants.routers.WagtailTenantSyncRouter",)
 
 CUSTOM_CONNECTOR_MAPPING = True
 DBBACKUP_CONNECTOR_MAPPING = {
-    'django_tenants.postgresql_backend': 'wagtail_tenants.db.db_backup_connector.TenantPgDumpBinaryConnector',
+    "django_tenants.postgresql_backend": "wagtail_tenants.db.db_backup_connector.TenantPgDumpBinaryConnector",
 }
-DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
-DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR + '/backups'}
+DBBACKUP_STORAGE = "django.core.files.storage.FileSystemStorage"
+DBBACKUP_STORAGE_OPTIONS = {"location": BASE_DIR + "/backups"}
 
 AUTH_USER_MODEL = "wagtail_tenants.User"
 TENANT_MODEL = "customers.Client"
@@ -225,3 +222,17 @@ WAGTAILSEARCH_BACKENDS = {
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = "http://localhost"
+
+WAGTAIL_TEANTS_USE_SINGLE_SMTP = False
+WAGTAIL_TENANTS_EMAIL_FAIL_SILENT = False
+WAGTAIL_TEANTS_SMTP_CLIENT = {
+    "smtp_host": "",
+    "smtp_port": "",
+    "smtp_user": "",
+    "smtp_password": "",
+    "use_tsl": "",
+    "use_ssl": "",
+    "timeout": "",
+    "ssl_keyfile": "",
+    "ssl_certfile": "",
+}

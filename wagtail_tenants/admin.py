@@ -14,7 +14,7 @@ from wagtail_tenants.customers.models import (
     ClientFeatureGroup,
 )
 
-from .models import User
+from .models import User, SmtpAuthenticator
 
 
 class WagtailTenantsPermissionHelper(PermissionHelper):
@@ -77,6 +77,13 @@ class TenantClientAdmin(ModelAdmin):
     list_display = ("name", "paid_until", "on_trial", "created_on")
     menu_icon = "user"
     menu_label = _("Clients")
+
+
+class TenantSmtpAuthenticatorAdmin(ModelAdmin):
+    model = SmtpAuthenticator
+    list_display = ("tenant", "smtp_user", "smtp_host", "smtp_port")
+    menu_icon = "user"
+    menu_label = _("SMTP Authenticators")
 
 
 class TenantClientFeatureAdmin(ModelAdmin):
@@ -146,6 +153,7 @@ class TenantAdminGroup(ModelAdminGroup):
         TenantClientFeatureAdmin,
         TenantClientFeatureGroupAdmin,
         TenantDomainAdmin,
+        TenantSmtpAuthenticatorAdmin,
         TenantBackupAdmin,
     )
     permission_helper_class = WagtailTenantsPermissionHelper

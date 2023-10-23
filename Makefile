@@ -7,6 +7,10 @@ help: ## See what commands are available.
 
 all: install clean isort lint coverage ## Install, test and lint the project.
 
+migrations: ## Create the migrations.
+	@echo '== Create the migrations =='
+	python manage.py makemigrations
+
 clean: ## Remove Python file artifacts.
 	@echo '== Cleanup =='
 	rm dist/* 2>/dev/null || true

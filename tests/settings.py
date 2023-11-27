@@ -223,9 +223,9 @@ WAGTAILSEARCH_BACKENDS = {
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = "http://localhost"
 
-WAGTAIL_TEANTS_USE_SINGLE_SMTP = False
+WAGTAIL_TENANTS_USE_SINGLE_SMTP = False
 WAGTAIL_TENANTS_EMAIL_FAIL_SILENT = False
-WAGTAIL_TEANTS_SMTP_CLIENT = {
+WAGTAIL_TENANTS_SMTP_CLIENT = {
     "smtp_host": "",
     "smtp_port": "",
     "smtp_user": "",

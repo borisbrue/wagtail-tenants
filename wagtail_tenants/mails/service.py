@@ -6,8 +6,8 @@ from django.utils.html import strip_tags
 from django.core.mail.backends.smtp import EmailBackend
 from django.core.mail import get_connection
 
-WAGTAIL_TEANTS_USE_SINGLE_SMTP = getattr(settings, "WAGTAIL_TEANTS_USE_SMTP", False)
-WAGTAIL_TEANTS_SMTP_CLIENT = getattr(settings, "WAGTAIL_TEANTS_SMTP_CLIENT", None)
+WAGTAIL_TENANTS_USE_SINGLE_SMTP = getattr(settings, "WAGTAIL_TENANTS_USE_SMTP", False)
+WAGTAIL_TENANTS_SMTP_CLIENT = getattr(settings, "WAGTAIL_TENANTS_SMTP_CLIENT", None)
 WAGTAIL_TENANTS_EMAIL_FAIL_SILENT = getattr(
     settings, "WAGTAIL_TENANTS_EMAIL_FAIL_SILENT", False
 )
@@ -24,8 +24,8 @@ class TenantEmailservice:
             tenant = kwargs.pop("tenant", None)
         self.site = site
         self.tenant = tenant
-        if WAGTAIL_TEANTS_USE_SINGLE_SMTP:
-            self.client_credentials = WAGTAIL_TEANTS_SMTP_CLIENT
+        if WAGTAIL_TENANTS_USE_SINGLE_SMTP:
+            self.client_credentials = WAGTAIL_TENANTS_SMTP_CLIENT
         else:
             try:
                 self.client_credentials = SmtpAuthenticator.objects.get(

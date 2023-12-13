@@ -16,9 +16,20 @@ modeladmin_register(TenantAdminGroup)
 @hooks.register("register_admin_urls")
 def tenant_user_urls():
     return [
-        re_path(r"^users/(\d+)/$", TenantUserViews.edit, name="wagtailusers_edit"),
-        re_path(r"^users/add/$", TenantUserViews.create, name="wagtailusers_create"),
-        re_path(r"^users/", TenantUserViews.index, name="wagtailusers_index"),
+        re_path(
+            r"^users/(\d+)/$", TenantUserViews.Edit.as_view(), name="wagtailusers_edit"
+        ),
+        re_path(
+            r"^users/(\d+)/delete/$",
+            TenantUserViews.Delete.as_view(),
+            name="wagtailusers_delete",
+        ),
+        re_path(
+            r"^users/add/$",
+            TenantUserViews.Create.as_view(),
+            name="wagtailusers_create",
+        ),
+        re_path(r"^users/", TenantUserViews.Index.as_view(), name="wagtailusers_index"),
     ]
 
 
@@ -27,12 +38,12 @@ def tenant_user_create_url():
     return [
         re_path(
             r"^wagtail-tenants/admin/link/$",
-            TenantUserAdmin.create,
+            TenantUserViews.Create.as_view(),
             name="wagtail-tenants__admin_link",
         ),
         re_path(
             r"^wagtail-tenants/admin/",
-            TenantUserViews.index,
+            TenantUserViews.Index.as_view(),
             name="wagtail-tenants__admin_index",
         ),
     ]
@@ -53,7 +64,7 @@ def customize_menu_for_tenant(request, menu_items):
     tenant_aware_apps = get_tenant_aware_apps(current_tenant)
     # Filter the menu items based on the allowed features and tenant-aware apps
     for item in menu_items:
-        print(item.name)
+        ...
     # menu_items[:] = [
     #     item
     #     for item in menu_items
